@@ -310,13 +310,11 @@
                 let email = $('#contact-email').val();
                 let phone = $('#contact-phone').val();
                 let company = $('#contact-company').val();
-                let interest = $('#contact-interest:selected').text();
-                let message = `<p>Message submited via web contact form!</p><p>Name: <strong>${name}</strong></p><p>Company: <strong>${company}</strong></p><p>Mail: <strong>${email}</strong></p><p>Phone: <strong>${phone}</strong></p><p>Interested in: <strong>${interest}</strong></p>`;
+                let interest = $('#contact-interest').find(':selected').text();
+                let message = `<p>Message submited via contact form on Com-PASS website!</p><p>Name: <strong>${name}</strong></p><p>Company: <strong>${company}</strong></p><p>Mail: <strong>${email}</strong></p><p>Phone: <strong>${phone}</strong></p><p>Interested in: <strong>${interest}</strong></p>`;
 
-                $.get("sendmail.php", {
-                    name: name,
-                    email: email,
-                    subject: "Message from com-pass.cz",
+                $.get("simplemail.php", {
+                    subject: "Message from Com-PASS website",
                     message: message
                 }, function (data) {
                     if (JSON.parse(data) == 'OK') {
